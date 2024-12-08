@@ -1,7 +1,9 @@
 from tkinter import Frame, Label, Entry, Button, ttk
 
+
 class RuleCreateViews(Frame):
-     def __init__(self, parent, *args, **kwargs):
+           
+    def __init__(self, parent, *args, **kwargs):
         super().__init__(parent, *args, **kwargs)
 
         
@@ -32,32 +34,35 @@ class RuleCreateViews(Frame):
 
         self.preview_frame = Frame(self)
         self.preview_frame.grid(row=0, column=1,pady=10)
-        self.preview_scroll = ttk.Scrollbar(self.preview_frame)
-        self.preview_scroll.pack(side='right',fill='x')
 
 
-        
+        self.preview_scroll = ttk.Scrollbar(self.preview_frame, orient="horizontal")
+        self.preview_scroll.pack(side='bottom',fill='x')
+
+
         cols = ('REF_NO', 'RULE_CODE', 'RULE_DESCRIPTION', 'FORMULA', 'OPEN_PARENTHESIS',
                     'CONDITION', 'OPERATOR1', 'CONDITION_VALUE', 'AND_OR1', 'CLOSE_PARENTHESIS',
                     'AND_OR2', 'OPERATOR2', 'LIMIT_VALUE', 'BENCHMARK_CODE', 'PRORATA', 'CIS_MANAGER',
                     'MKT_DERIVATIVE', 'UNDERLYING_CODE', 'REMARK', 'DELETE_FLAG', 'USER_UPLOAD', 'UPLOAD_DATE')
         
-        self.preview_box = ttk.Treeview(self.preview_frame,show='headings',
-                                        xscrollcommand=self.preview_scroll.set,columns=cols,height=13)
+        self.preview_box = ttk.Treeview(self.preview_frame,
+                                        show='headings',
+                                        xscrollcommand=self.preview_scroll.set,
+                                        columns=cols,
+                                        height=13)
         
         for heading in cols:
             self.preview_box.heading(heading, text=heading)
-            self.preview_box.column(heading,width=100)
-     
-        '''   
-        self.preview_box.column("Name", width=100) 
-        self.preview_box.column("Age", width=50)
-        self.preview_box.column("Subscription", width=100)
-        self.preview_box.column("Employment", width=100)
-        '''
-     
-        self.preview_box.pack()
-        
-        self.preview_scroll.config(command=self.preview_box.xview)
+            self.preview_box.column(heading,width=150)
 
+
+        self.preview_box.pack(side='top', fill='both', expand=True)
+        self.preview_scroll.config(command=self.preview_box.xview)
+    
+    def populate_treeview(self, data):
+        for item in self.preview_box.get_children():
+            self.preview_box.delete(item)
+        for _, row in data.iterrows():
+            self.preview_box.insert("", "end", values=row.to_list())
+     
 

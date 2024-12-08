@@ -11,6 +11,11 @@ class RuleController:
 
     def _bind(self) -> None:
         self.frame.home_page_btn.config(command=self.home)
+        self.frame.append_profiles_btn.config(command=self.load_data)
 
     def home(self) -> None:
         self.view.switch("Home Page")
+    
+    def load_data(self)-> None:
+        data = self.model.rule.load_data()
+        self.frame.populate_treeview(data)

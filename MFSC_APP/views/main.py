@@ -2,7 +2,7 @@ from typing import TypedDict
 from .root import Root
 from .home_view import HomeViews
 from .rule_create_views import RuleCreateViews
-
+from .clientxrule_view import ClientXRuleViews
 
 class Frames(TypedDict):
     rule: RuleCreateViews
@@ -16,6 +16,7 @@ class View:
 
         self._add_frame(RuleCreateViews, "Rule Create")
         self._add_frame(HomeViews, "Home Page")
+        self._add_frame(ClientXRuleViews,"ClientxRule")
 
     def _add_frame(self, Frame, name: str) -> None:
         self.frames[name] = Frame(self.root)

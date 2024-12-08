@@ -10,6 +10,11 @@ class HomeController:
 
     def _bind(self):
         self.frame.rule_page_btn.config(command=self.rule_create)
+        self.frame.clientxrule_page_btn.config(command=self.clientxrule_create)
     
     def rule_create(self) -> None:
         self.view.switch("Rule Create")
+
+    
+    def clientxrule_create(self) -> None:
+        self.view.switch("ClientxRule")

@@ -10,6 +10,9 @@ class HomeViews(Frame):
         self.rule_page_btn = Button(self.input_frame, text="Create Rule")
         self.rule_page_btn.grid(row=5, column=1, padx=0, pady=10, sticky="w")
 
+        self.clientxrule_page_btn = Button(self.input_frame, text="Client X Rule")
+        self.clientxrule_page_btn.grid(row=6, column=1, padx=0, pady=10, sticky="w")
+
 
       
 
