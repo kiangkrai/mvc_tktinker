@@ -8,7 +8,10 @@ class ClientXRuleViews(Frame):
         self.input_section = ttk.LabelFrame(self,text='Client X RuleForm')
         self.input_section.grid(row=0, column=0, padx=20, pady=10)
 
+        self.export_btn = Button(self.input_section,text="Export to csv")
+        self.export_btn.grid(row=0, column=2, padx=5, pady=10,sticky="w")
 
+        
         self.ref_no_lb = Label(self.input_section, text="REF NO")
         self.ref_no_lb.grid(row=1, column=0, padx=5, pady=10)
         self.ref_no_input = Entry(self.input_section)
@@ -24,7 +27,7 @@ class ClientXRuleViews(Frame):
         self.rule_code_input = Entry(self.input_section)
         self.rule_code_input.grid(row=3, column=1, padx=5, pady=10)
 
-        self.delete_lb = Label(self.input_section,text="Text")
+        self.delete_lb = Label(self.input_section,text="Delete")
         self.delete_lb.grid(row=4, column=0, padx=5, pady=10)
         self.delete_input = Entry(self.input_section)
         self.delete_input.grid(row=4, column=1, padx=5, pady=10)
@@ -48,11 +51,14 @@ class ClientXRuleViews(Frame):
         self.preview_section.grid(row=0, column=1, padx=20, pady=10, sticky="nsew")
 
         # Define Columns for TreeView
-        cols = ("REF_NO", "Client Code", "Rule Code", "USER_UPLOAD", "UPLOAD_DATE", "DELETE_FLAG")
+        cols = ("REF_NO", "CLIENT_CODE", "RULE_CODE", "USER_UPLOAD", "UPLOAD_DATE", "DELETE_FLAG","ID")
         self.preview_tree = ttk.Treeview(
             self.preview_section, show="headings", columns=cols, height=20, 
             )
-        
+        for col in cols:
+            self.preview_tree.heading(col, text=col)
+            self.preview_tree.column(col, width=150 if col != "ID" else 0)  # Hide ID column
+                
         # Add Scrollbar
         tree_scroll = ttk.Scrollbar(self.preview_section, orient="vertical", command=self.preview_tree.yview)
         tree_scroll.pack(side="right", fill="y")
