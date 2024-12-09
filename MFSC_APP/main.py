@@ -1,11 +1,11 @@
 from models.main import Model
 from views.main import View
 from controllers.main import Controller
+from models.clientxrule_model import ClientXRuleModel
 
 def main():
-    model = Model()
     view = View()
-    controller = Controller(model, view)
+    controller = Controller(view)
     controller.start()
 
 if __name__ == "__main__":

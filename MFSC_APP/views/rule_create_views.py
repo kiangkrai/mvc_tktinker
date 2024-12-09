@@ -11,12 +11,17 @@ class RuleCreateViews(Frame):
         self.input_frame = ttk.Labelframe(self,text='input box')
         self.input_frame.grid(row=0, column=0, padx=20, pady=10)
 
-        self.header = Label(self.input_frame, text="Please Input Client Profiles")
-        self.header.grid(row=0, column=0, columnspan=1, padx=10, pady=10)
 
+        self.ref_no_lb = Label(self.input_frame, text="REF NO")
+        self.ref_no_lb.grid(row=1, column=0, padx=5, pady=10)
+        self.ref_no_input = Entry(self.input_frame)
+        self.ref_no_input.grid(row=1, column=1, padx=5, pady=10)
 
-        self.input_data = Entry(self.input_frame)
-        self.input_data.grid(row=1, column=0, padx=5, pady=10)
+        self.ref_no_lb = Label(self.input_frame, text="RULE_CODE")
+        self.ref_no_lb.grid(row=1, column=0, padx=5, pady=10)
+        self.ref_no_input = Entry(self.input_frame)
+        self.ref_no_input.grid(row=1, column=1, padx=5, pady=10)
+
         
         self.append_profiles_btn = Button(self.input_frame, text="Add Data")
         self.append_profiles_btn.grid(row=2, column=0, columnspan=1, padx=10, pady=10)
@@ -33,7 +38,7 @@ class RuleCreateViews(Frame):
 
 
         self.preview_frame = Frame(self)
-        self.preview_frame.grid(row=0, column=1,pady=10)
+        self.preview_frame.grid(row=0, column=1,padx=10,pady=10)
 
 
         self.preview_scroll = ttk.Scrollbar(self.preview_frame, orient="horizontal")
@@ -48,8 +53,8 @@ class RuleCreateViews(Frame):
         self.preview_box = ttk.Treeview(self.preview_frame,
                                         show='headings',
                                         xscrollcommand=self.preview_scroll.set,
-                                        columns=cols,
-                                        height=13)
+                                        columns=cols
+                                        )
         
         for heading in cols:
             self.preview_box.heading(heading, text=heading)
@@ -58,11 +63,17 @@ class RuleCreateViews(Frame):
 
         self.preview_box.pack(side='top', fill='both', expand=True)
         self.preview_scroll.config(command=self.preview_box.xview)
-    
+
+        self.grid_rowconfigure(0, weight=0)
+        self.grid_columnconfigure(1, weight=1)
+        self.preview_frame.grid_rowconfigure(0, weight=1)
+        self.preview_frame.grid_columnconfigure(0, weight=1)
+   
     def populate_treeview(self, data):
+        # Clear the TreeView
         for item in self.preview_box.get_children():
             self.preview_box.delete(item)
+        # Add rows to the TreeView
         for _, row in data.iterrows():
             self.preview_box.insert("", "end", values=row.to_list())
-     
 

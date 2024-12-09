@@ -1,10 +1,10 @@
-from models.main import Model
+from models.clientxrule_model import ClientXRuleModel
 from views.main import View
 
 
 class ClientxRuleController:
-    def __init__(self, model: Model, view: View) -> None:
-        self.model = model
+    def __init__(self, model: ClientXRuleModel, view: View) -> None:
+        self.model = ClientXRuleModel()
         self.view = view
         self.frame = self.view.frames["ClientxRule"]
         self._bind()
@@ -14,15 +14,14 @@ class ClientxRuleController:
         self.frame.add_btn.config(command=self.add_entry)
         self.frame.del_btn.config(command=self.delete_entry)
         self.frame.edit_btn.config(command=self.edit_entry)
-
         
         # Load data when initializing
- #       self.load_data()
+        self.load_data()
 
-#    def load_data(self):
-#        """Load data from the model and display it in the TreeView."""
-#        data = self.model.load_data()
-#        self.frame.populate_treeview(data)
+    def load_data(self):
+       """Load data from the model and display it in the TreeView."""
+       data = self.model.load_data()
+       self.frame.populate_treeview(data)
 
     def add_entry(self):
         """Handle adding a new entry (logic omitted for brevity)."""

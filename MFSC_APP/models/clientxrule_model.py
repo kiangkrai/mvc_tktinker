@@ -1,10 +1,9 @@
 import pandas as pd
-from config.templates import TEMPLATE_PATHS
 
 
 class ClientXRuleModel:
-    def  __init__(self, filepath):
-        self.filepath = TEMPLATE_PATHS['ClientXRule']
+    def  __init__(self):
+        self.filepath = r"D:\MFSC_PROGRAM\UAT\MFSC_APP\asset\clientxrule_template.xlsx"
         self.data = None
     
     def load_data(self):
@@ -23,3 +22,30 @@ class ClientXRuleModel:
             self.load_data()
         return self.data.head(n)
     
+
+'''''
+# Testing Function
+def main():
+    # Create an instance of ClientXRuleModel
+    model = ClientXRuleModel()
+    
+    # Load the data
+    print("Loading data...")
+    data = model.load_data()
+    print("Data loaded successfully.")
+    
+    # Show top rows
+    print("Top rows of the dataset:")
+    print(model.show_top())
+
+    # Test save functionality (optional)
+    print("Testing save functionality...")
+    model.save_data()
+    print("Data saved successfully.")
+
+if __name__ == "__main__":
+    main()
+
+'''
+    
+

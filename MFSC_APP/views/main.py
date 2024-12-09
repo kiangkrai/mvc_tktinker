@@ -17,6 +17,7 @@ class View:
         self._add_frame(RuleCreateViews, "Rule Create")
         self._add_frame(HomeViews, "Home Page")
         self._add_frame(ClientXRuleViews,"ClientxRule")
+        
 
     def _add_frame(self, Frame, name: str) -> None:
         self.frames[name] = Frame(self.root)
