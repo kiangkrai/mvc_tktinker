@@ -1,6 +1,7 @@
 from .rule_model import RuleCreateModel
+from .clientxrule_model import ClientXRuleModel
+import pandas as pd 
 
 class Model:
-    def __init__(self):
-        test_file = r'D:\MFSC_PROGRAM\MFSC_APP\asset\rule_code_temp.xlsx'
-        self.rule = RuleCreateModel(test_file)
+    pass
+
