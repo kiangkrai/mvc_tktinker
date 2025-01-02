@@ -3,7 +3,9 @@ from .root import Root
 from .home_view import HomeViews
 from .rule_create_views import RuleCreateViews
 from .clientxrule_view import ClientXRuleViews
-
+from .benchmark_view import BenchmarkView
+from .financial_liab_view import Financial_liabl
+from .net_expo_view import Net_Expo
 class Frames(TypedDict):
     rule: RuleCreateViews
     home: HomeViews
@@ -17,7 +19,10 @@ class View:
         self._add_frame(RuleCreateViews, "Rule Create")
         self._add_frame(HomeViews, "Home Page")
         self._add_frame(ClientXRuleViews,"ClientxRule")
-        
+        self._add_frame(BenchmarkView,"Benchmark")
+        self._add_frame(Financial_liabl,"Financial_liab")
+        self._add_frame(Net_Expo,"NetExpo")
+
 
     def _add_frame(self, Frame, name: str) -> None:
         self.frames[name] = Frame(self.root)

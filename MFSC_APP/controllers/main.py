@@ -6,6 +6,12 @@ from .rule_create import RuleController
 from .clientxrule import ClientxRuleController
 from models.clientxrule_model import ClientXRuleModel
 from models.rule_model import RuleCreateModel
+from models.benchmark_model import BenchmarkModel
+from .benchmarks import BenchmarkController
+from models.financial_liab_model import Financial_liabModel
+from .financial_liab import Financial_liabController 
+from models.net_expo_model import Net_Expo_Model
+from .net_expo import Net_ExpoController
 
 class Controller:
     def __init__(self, view: View):
@@ -17,6 +23,14 @@ class Controller:
         self.rule_controller = RuleController(self.rule_model,view)
         self.home_controller = HomeController(view)
         self.clientxrule_controller = ClientxRuleController(self.clientxrule_model,view)
+        self.benchmark_model = BenchmarkModel
+        self.benchmark_controller = BenchmarkController(self.benchmark_model,view)
+        self.financial_liab_model = Financial_liabModel
+        self.financial_liab_controller = Financial_liabController(self.financial_liab_model,view)
+        self.Net_Expo_Model = Net_Expo_Model
+        self.Net_Expo_controller = Net_ExpoController(self.Net_Expo_Model,view)
+
+        
 
         # Initialize models and controllers
        
