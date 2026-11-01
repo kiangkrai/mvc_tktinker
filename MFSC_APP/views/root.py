@@ -1,8 +1,11 @@
 from tkinter import Tk
+from config.styles import apply_styles
+from ttkbootstrap import Style
 
 class Root(Tk):
     def __init__(self):
         super().__init__()
+        apply_styles()
 
         start_width = 800
         min_width = 250
@@ -14,3 +17,5 @@ class Root(Tk):
         self.title("MFSC APP")
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
+
+        #apply_styles(self)
